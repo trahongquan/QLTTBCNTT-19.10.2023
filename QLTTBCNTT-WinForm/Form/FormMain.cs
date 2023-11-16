@@ -158,7 +158,7 @@ namespace QLTTBCNTT_WinForm
         private void accMgrToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAccMgr frm = new FormAccMgr();
-            this.Hide();
+            //this.Hide();
             frm.ShowDialog();
             this.Show();
         }
@@ -166,7 +166,7 @@ namespace QLTTBCNTT_WinForm
         private void changePassToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_ChangePass frm = new Frm_ChangePass(user);
-            this.Hide();
+            //this.Hide();
             frm.ShowDialog();
             this.Show();
         }
