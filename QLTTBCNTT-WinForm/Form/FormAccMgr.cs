@@ -82,15 +82,24 @@ namespace QLTTBCNTT_WinForm
         #region Thêm, Sửa, Xoá
         private void thêmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            DataTable dataTable = new QueryQuannhan().getDS_Quannhan();
+            DataRow[] rows = dataTable.Select("CMTQD = '" + getAcc().CMTQD1 + "'");
+            if (rows.Length > 0)
             {
-                SQL.Insert(getAcc());
-                dtgvAcc.DataSource = SQL.getTableAccount();
+                MessageBox.Show("Tài khoản này đã được cấp, xin vui lòng kiểm tra lại");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
+                try
+                {
+                    SQL.Insert(getAcc());
+                    dtgvAcc.DataSource = SQL.getTableAccount();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }           
         }
 
         private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -163,7 +172,7 @@ namespace QLTTBCNTT_WinForm
 
         private void cbbQN_TextChanged(object sender, EventArgs e)
         {
-            labelCMTQD.Text = new QueryQuannhan().FindCMTQDbyidQN(int.Parse(cbbQN.SelectedValue.ToString()));
+            labelCMTQD.Text = "Số CMTQĐ: " + new QueryQuannhan().FindCMTQDbyidQN(int.Parse(cbbQN.SelectedValue.ToString()));
         }
     }
 }
